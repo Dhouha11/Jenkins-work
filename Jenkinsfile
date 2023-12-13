@@ -1,4 +1,3 @@
-CODE_CHANGES = getGitChanges()
 pipeline {
 
     agent any
@@ -7,8 +6,9 @@ pipeline {
         stage("build") {
             when {
                 expression {
-                    BRANCH_NAME == 'Dhouha11-version-1' && CODE_CHANGES == true
+                    BRANCH_NAME == 'Dhouha11-version-1'
                 }
+            }
             steps {
                 echo ' building the application..'
             }
@@ -18,6 +18,7 @@ pipeline {
                 expression {
                     BRANCH_NAME == 'Dhouha11-version-1'
                 }
+            }
             steps {
                 echo ' testing the application..'
             }
@@ -26,9 +27,11 @@ pipeline {
             steps {
                 echo ' deploying the application..'
             }
+        }
         post {
             success {
                 echo ' You did it ..'
-        }
-    }   
+            }
+        }   
+    }
 }
